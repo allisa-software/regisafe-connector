@@ -1,0 +1,14 @@
+{
+  "name": "allisa/regisafeconnector",
+  "type": "library",
+  "description": "Regisafe Connector",
+  "autoload": {
+    "psr-4": {
+      "Allisa\\Regisafe\\": "src/"
+    }
+  },
+  "require": {
+    "guzzlehttp/guzzle": "^7.0",
+    "ext-json": "*"
+  }
+}
