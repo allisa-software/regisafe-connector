@@ -5,6 +5,7 @@ namespace Allisa\Regisafe\Writer;
 use Allisa\Regisafe\Writer\FileRequest\AuthBuilder as FileRequestBuilder;
 use Allisa\Regisafe\Writer\FolderRequest\AuthBuilder as FolderRequestBuilder;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\RequestOptions;
 
 /**
@@ -35,6 +36,13 @@ class AuthWriter implements WriterInterface {
             $responseObject = json_decode($response->getBody()->getContents());
             return $responseObject->folderID;
         } catch (\Throwable $guzzleException) {
+            if ($guzzleException instanceof ClientException) {
+                throw new \Exception(
+                    $guzzleException->getResponse()->getBody()->getContents(),
+                    $guzzleException->getCode(),
+                    $guzzleException
+                );
+            }
             throw new \Exception($guzzleException->getMessage(), $guzzleException->getCode(), $guzzleException);
         }
     }
@@ -51,6 +59,13 @@ class AuthWriter implements WriterInterface {
             $responseObject = json_decode($response->getBody()->getContents());
             return $responseObject->docID;
         } catch (\Throwable $guzzleException) {
+            if ($guzzleException instanceof ClientException) {
+                throw new \Exception(
+                    $guzzleException->getResponse()->getBody()->getContents(),
+                    $guzzleException->getCode(),
+                    $guzzleException
+                );
+            }
             throw new \Exception($guzzleException->getMessage(), $guzzleException->getCode(), $guzzleException);
         }
     }
