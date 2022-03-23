@@ -20,6 +20,8 @@ class AuthBuilder implements RequestInterface {
 
     protected $folderId;
 
+    protected $type;
+
     protected $metaData = [];
 
     protected $binaries = [];
@@ -75,6 +77,12 @@ class AuthBuilder implements RequestInterface {
         return $this;
     }
 
+    public function setType(string $type): AuthBuilder {
+        $this->type = $type;
+
+        return $this;
+    }
+
     /**
      * @param string $key
      * @param string $value
@@ -111,6 +119,7 @@ class AuthBuilder implements RequestInterface {
             'apiId' => $this->apiId,
             'sessionToken' => $this->sessionToken,
             'folderID' => $this->folderId,
+            'type' => $this->type
         ];
 
         if ($this->docId) {
