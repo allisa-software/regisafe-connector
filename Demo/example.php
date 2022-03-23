@@ -10,6 +10,7 @@ const LOGIN_ID = '';
 const PASSWORD = '';
 
 const FOLDER_ID = '';
+const TYPE = '';
 const DOCUMENT_ID = '';
 const DOCUMENT_NAME = 'Testdokument';
 
@@ -36,6 +37,7 @@ try {
     $fileRequest->setApiId(API_ID)
         ->setDocId(DOCUMENT_ID)
         ->setFolderId(FOLDER_ID)
+        ->setType(TYPE)
         ->setSessionToken($sessionToken)
         ->setUrl(WRITE_URL)
         ->addFilenameBinaryPair(DOCUMENT_NAME, base64_encode($file));

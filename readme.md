@@ -74,6 +74,7 @@ try {
     $fileRequest->setApiId(API_ID)
         ->setDocId(DOCUMENT_ID)
         ->setFolderId(FOLDER_ID)
+        ->setType(TYPE)
         ->setSessionToken($sessionToken)
         ->setUrl(WRITE_URL)
         ->addFilenameBinaryPair(DOCUMENT_NAME, base64_encode($file));
