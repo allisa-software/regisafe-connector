@@ -31,4 +31,14 @@ class Login extends AbstractRequest {
         return $this->password;
     }
 
+    public function getParams() : array {
+        return [
+            'apiID' => $this->apiId,
+            'lifetime' => $this->getLifetime(),
+            'loginID' => $this->loginId,
+            'password' => $this->password
+        ];
+    }
+
+
 }

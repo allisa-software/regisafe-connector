@@ -4,6 +4,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 const API_ID = '';
 const AUTH_URL = '';
+const LOGOUT_URL = '';
 const WRITE_URL = '';
 
 const LOGIN_ID = '';
@@ -45,5 +46,17 @@ try {
     $response = $writer->writeDocument($fileRequest);
 } catch (Exception $exception) {
     error_log('Dokument konnte nicht an Regisafe übertragen werden: ' . $exception->getMessage());
+    exit;
+}
+
+try {
+    $logoutAuthenticator = new \Allisa\Regisafe\Auth\Authenticator\Logout();
+    $request = $logoutAuthenticator->getAuthRequest();
+    $request->setUrl(LOGOUT_URL)
+        ->setApiId(API_ID)
+        ->setSessionToken($sessionToken);
+    $logoutAuthenticator->authenticate($request);
+} catch (Exception $exception) {
+    error_log('Logoutfehler am Regisafe Server: ' . $exception->getMessage());
     exit;
 }
